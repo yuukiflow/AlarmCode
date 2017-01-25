@@ -1,0 +1,32 @@
+import pigpio
+import time
+
+#pin 17 = rouge
+#pin 22 = vert
+#pin 24 = bleu
+
+pi = pigpio.pi()
+pi.set_mode(17, pigpio.OUTPUT)
+pi.set_mode(22, pigpio.OUTPUT)
+pi.set_mode(24, pigpio.OUTPUT)
+
+user_time = int(raw_input("Pendant combien de minutes doit-il s'allumer : "))
+
+def temp(user_time):
+
+    user_seconds = user_time*3600
+    time_sleep= user_second/255
+    
+    return time_sleep
+try:
+    while True:
+        for i in range(255):
+            pi.set_PWM_dutycyle(PIN, i)
+
+	    time.sleep(time_sleep)
+
+except KeyboardInterrupt:
+    pass
+
+pi.stop()
+GPIO.cleanup()
