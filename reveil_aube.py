@@ -12,12 +12,12 @@ BLUE_PIN = 24
 
 try:
     
-	user_time = int(input("Pendant combien de minutes doit-il s'allumer : "))
+#	user_time = int(input("Pendant combien de minutes doit-il s'allumer : "))
 
 #def temps(user_time):
 
-	user_seconds = user_time*60
-	time_sleep= user_seconds/255
+#	user_seconds = user_time*60
+#	time_sleep= user_seconds/255
     
  #   return time_sleep
 
@@ -28,9 +28,15 @@ try:
 	while True:
 		for i in range(2, 255):
 			pi.set_PWM_dutycycle(RED_PIN, i)
-			pi.set_PWM_dutycycle(BLUE_PIN, i)
-			pi.set_PWM_dutycycle(GREEN_PIN, i)
-			time.sleep(time_sleep)
+			pi.set_PWM_dutycycle(BLUE_PIN, 257-i)
+			pi.set_PWM_dutycycle(GREEN_PIN, 257-i)
+			time.sleep(0.005)
+
+		for i in range(2, 255):
+                        pi.set_PWM_dutycycle(RED_PIN, 257-i)
+                        pi.set_PWM_dutycycle(BLUE_PIN, i)
+                        pi.set_PWM_dutycycle(GREEN_PIN, i)
+                        time.sleep(0.005)
 	    
 except KeyboardInterrupt:
     pass
